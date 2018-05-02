@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"gopkg.in/h2non/bimg.v1"
-	"gopkg.in/h2non/filetype.v0"
+	"gopkg.in/h2non/filetype.v1"
 )
 
 func indexController(w http.ResponseWriter, r *http.Request) {
@@ -87,13 +87,23 @@ func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation 
 		}
 	}
 
+	fmt.Println("mimetype", mimeType)
+
+	opts := readParams(r.URL.Query())
+	if mimeType == "image/gif" {
+
+		w.Header().Set("Content-Length", strconv.Itoa(len(buf)))
+		w.Header().Set("Content-Type", "image/gif")
+		w.Write(buf)
+		return
+	}
+
 	// Finally check if image MIME type is supported
 	if IsImageMimeTypeSupported(mimeType) == false {
 		ErrorReply(r, w, ErrUnsupportedMedia, o)
 		return
 	}
 
-	opts := readParams(r.URL.Query())
 	vary := ""
 	if opts.Type == "auto" {
 		opts.Type = determineAcceptMimeType(r.Header.Get("Accept"))

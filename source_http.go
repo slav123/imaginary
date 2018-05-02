@@ -1,11 +1,13 @@
 package main
 
 import (
+	"crypto/tls"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
 const ImageSourceTypeHttp ImageSourceType = "http"
@@ -54,7 +56,19 @@ func (s *HttpImageSource) fetchImage(url *url.URL, ireq *http.Request) ([]byte, 
 
 	// Perform the request using the default client
 	req := newHTTPRequest(s, ireq, "GET", url)
-	res, err := http.DefaultClient.Do(req)
+
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+
+	client := &http.Client{
+		Timeout:   time.Second * 10,
+		Transport: tr,
+	}
+
+	res, err := client.Do(req)
+
+	//res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("Error downloading image: %v", err)
 	}
