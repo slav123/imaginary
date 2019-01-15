@@ -54,6 +54,8 @@ func (s *HttpImageSource) fetchImage(url *url.URL, ireq *http.Request) ([]byte, 
 		}
 	}
 
+	fmt.Print("this is url %s: ", url)
+
 	// Perform the request using the default client
 	req := newHTTPRequest(s, ireq, "GET", url)
 

@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 	"gopkg.in/h2non/filetype.v1"
 )
 

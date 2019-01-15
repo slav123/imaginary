@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"testing"
 
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 )
 
 const fixture = "fixtures/large.jpg"

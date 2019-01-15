@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 )
 
 // OperationsMap defines the allowed image transformation operations listed by name.
@@ -236,6 +236,7 @@ func Convert(buf []byte, o ImageOptions) (Image, error) {
 		return Image{}, NewError("Missing required param: type", BadRequest)
 	}
 	if ImageType(o.Type) == bimg.UNKNOWN {
+		fmt.Printf("Invalid image type: %s", o.Type)
 		return Image{}, NewError("Invalid image type: "+o.Type, BadRequest)
 	}
 	opts := BimgOptions(o)

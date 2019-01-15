@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 )
 
 func TestIndex(t *testing.T) {

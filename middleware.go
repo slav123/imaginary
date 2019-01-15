@@ -1,16 +1,16 @@
 package main
 
 import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
 	"fmt"
 	"net/http"
 	"strings"
 	"time"
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/base64"
 
 	"github.com/rs/cors"
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 	"gopkg.in/throttled/throttled.v2"
 	"gopkg.in/throttled/throttled.v2/store/memstore"
 )

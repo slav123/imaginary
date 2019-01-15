@@ -1,6 +1,6 @@
 package main
 
-import "gopkg.in/h2non/bimg.v1"
+import "github.com/slav123/bimg"
 
 // ImageOptions represent all the supported image transformation params as first level members
 type ImageOptions struct {
@@ -38,6 +38,9 @@ type ImageOptions struct {
 	Gravity       bimg.Gravity
 	Colorspace    bimg.Interpretation
 	Operations    PipelineOperations
+	Page          int
+	N             int
+	Scale         float32
 }
 
 // PipelineOperation represents the structure for an operation field.
@@ -71,6 +74,10 @@ func BimgOptions(o ImageOptions) bimg.Options {
 		StripMetadata:  o.StripMetadata,
 		Type:           ImageType(o.Type),
 		Rotate:         bimg.Angle(o.Rotate),
+		Page:           o.Page,
+		Scale:          o.Scale,
+		Dpi:            float32(o.DPI),
+		N:              o.N,
 	}
 
 	if len(o.Background) != 0 {

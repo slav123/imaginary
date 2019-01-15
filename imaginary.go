@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	bimg "gopkg.in/h2non/bimg.v1"
+	bimg "github.com/slav123/bimg"
 )
 
 var (

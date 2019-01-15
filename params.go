@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gopkg.in/h2non/bimg.v1"
+	"github.com/slav123/bimg"
 )
 
 var allowedParams = map[string]string{
@@ -45,6 +45,9 @@ var allowedParams = map[string]string{
 	"sigma":       "float",
 	"minampl":     "float",
 	"operations":  "json",
+	"page":        "int",
+	"n":           "int",
+	"scale":       "float",
 }
 
 func readParams(query url.Values) ImageOptions {
@@ -152,6 +155,9 @@ func mapImageParams(params map[string]interface{}) ImageOptions {
 		Sigma:         params["sigma"].(float64),
 		MinAmpl:       params["minampl"].(float64),
 		Operations:    params["operations"].(PipelineOperations),
+		Page:          params["page"].(int),
+		N:             params["n"].(int),
+		Scale:         float32(params["scale"].(float64)),
 	}
 }
 
